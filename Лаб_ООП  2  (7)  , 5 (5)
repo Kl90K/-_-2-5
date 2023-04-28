@@ -1,0 +1,75 @@
+2 (7)
+LinkedList mergeLists(const LinkedList& list1, const LinkedList& list2) {
+    LinkedList mergedList;
+    Node* current1 = list1.head;
+    Node* current2 = list2.head;
+    while (current1 != nullptr && current2 != nullptr) {
+        if (current1->data >= current2->data) {
+            mergedList.add(current1->data);
+            current1 = current1->next;
+        } else {
+            mergedList.add(current2->data);
+            current2 = current2->next;
+        }
+    }
+    while (current1 != nullptr) {
+        mergedList.add(current1->data);
+        current1 = current1->next;
+    }
+    while (current2 != nullptr) {
+        mergedList.add(current2->data);
+        current2 = current2->next;
+    }
+    return mergedList;
+}
+
+int main() {
+    LinkedList list1;
+    list1.add(5.0);
+    list1.add(3.0);
+    list1.add(1.0);
+    LinkedList list2;
+    list2.add(6.0);
+    list2.add(4.0);
+    list2.add(2.0);
+    LinkedList mergedList = mergeLists(list1, list2);
+    mergedList.print();
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+5 (5) 
+class Stroka {
+public:
+    Stroka() : data(nullptr), length(0) {}
+    Stroka(const char* str) : data(nullptr), length(0) {
+        if (str != nullptr) {
+            length = strlen(str);
+            data = new char[length + 1];
+            strcpy(data, str);
+        }
+    }
+    virtual ~Stroka() {
+        if (data != nullptr) {
+            delete[] data;
+        }
+    }
+    int getLength() const {
+        return length;
+    }
+    const char* getData() const {
+        return data;
+    }
+protected:
+    char* data;
+    int length;
+};
